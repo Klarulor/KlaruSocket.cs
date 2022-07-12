@@ -1,9 +1,10 @@
 namespace KlaruSocket.Features.Structures
 {
-    public class MyRequestMessage
+    internal class MyRequestMessage : IMessage
     {
         public string keyword { get; set; }
         public string sessionId { get; set; }
         public int ttl { get; set; }
+        public string cntent { get; set; }
     }
 }

@@ -32,7 +32,9 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
-      <Compile Include="Features\Structures\IInfoMessage.cs" />
+      <Compile Include="Features\KlaruRequest.cs" />
+      <Compile Include="Features\Structures\MyInfoMessage.cs" />
+      <Compile Include="Features\Structures\IMessage.cs" />
       <Compile Include="Features\Structures\MyMessage.cs" />
       <Compile Include="Features\Structures\MyPreparingMessage.cs" />
       <Compile Include="Features\Structures\MyRequestMessage.cs" />
@@ -41,6 +43,10 @@
     </ItemGroup>
     <ItemGroup>
       <Reference Include="mscorlib" />
+      <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+        <HintPath>..\packages\Newtonsoft.Json.13.0.2-beta1\lib\net45\Newtonsoft.Json.dll</HintPath>
+        <Private>True</Private>
+      </Reference>
       <Reference Include="System" />
       <Reference Include="System.Net.Sockets, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
         <HintPath>..\packages\System.Net.Sockets.4.3.0\lib\net46\System.Net.Sockets.dll</HintPath>
