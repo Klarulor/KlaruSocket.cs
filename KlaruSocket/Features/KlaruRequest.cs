@@ -6,10 +6,12 @@ namespace KlaruSocket.Features
     {
         public readonly string Content;
         private readonly MyRequestMessage _reqMessage;
-        internal KlaruRequest(string content, MyRequestMessage reqMessage)
+        private readonly KlaruSocketClient _client;
+        internal KlaruRequest(KlaruSocketClient client, string content, MyRequestMessage reqMessage)
         {
             Content = content;
             _reqMessage = reqMessage;
+            _client = client;
         }
 
         public void Reply(string content)
@@ -19,6 +21,12 @@ namespace KlaruSocket.Features
             res.sessionId = _reqMessage.sessionId;
             res.responseCode = "OK";
             
+            if (_client.IncomingRequests.ContainsKey(res.sessionId))
+            {
+                _client.IncomingRequests[res.sessionId].Dispose();
+                _client.IncomingRequests.Remove(res.sessionId);
+                _client.SendPacket(res);
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 namespace KlaruSocket.Features.Structures
 {
-    internal class MyMessage
+    public class MyMessage
     {
         public string content { get; set; } // IMessage
         public byte type { get; set; }

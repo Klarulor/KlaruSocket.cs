@@ -33,6 +33,7 @@
     </PropertyGroup>
     <ItemGroup>
       <Compile Include="Features\KlaruRequest.cs" />
+      <Compile Include="Features\KlaruResponse.cs" />
       <Compile Include="Features\Structures\MyInfoMessage.cs" />
       <Compile Include="Features\Structures\IMessage.cs" />
       <Compile Include="Features\Structures\MyMessage.cs" />

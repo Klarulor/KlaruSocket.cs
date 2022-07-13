@@ -1,6 +1,6 @@
 namespace KlaruSocket.Features.Structures
 {
-    internal interface IMessage
+    public interface IMessage
     {
         string cntent { get; set; }
     }
