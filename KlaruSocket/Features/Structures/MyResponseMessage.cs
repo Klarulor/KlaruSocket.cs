@@ -4,6 +4,6 @@ namespace KlaruSocket.Features.Structures
     {
         public string sessionId { get; set; }
         public string responseCode { get; set; }
-        public string cntent { get; set; }
+        public string content { get; set; }
     }
 }

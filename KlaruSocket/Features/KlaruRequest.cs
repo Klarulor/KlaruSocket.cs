@@ -17,7 +17,7 @@ namespace KlaruSocket.Features
         public void Reply(string content)
         {
             MyResponseMessage res = new MyResponseMessage();
-            res.cntent = content;
+            res.content = content;
             res.sessionId = _reqMessage.sessionId;
             res.responseCode = "OK";
             

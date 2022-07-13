@@ -95,7 +95,7 @@ namespace KlaruSocket
         public Task<KlaruResponse> Get(string keyword, string content)
         {
             MyRequestMessage reqMessage = new MyRequestMessage();
-            reqMessage.cntent = content;
+            reqMessage.content = content;
             reqMessage.keyword = keyword;
             reqMessage.ttl = 5000;
             reqMessage.sessionId = _random.Next(1, 1000000).ToString();
@@ -125,7 +125,7 @@ namespace KlaruSocket
                         MyRequestMessage reqMessage = Newtonsoft.Json.JsonConvert.DeserializeObject<MyRequestMessage>(packet.content);
                         if (Keys.ContainsKey(reqMessage.keyword))
                         {
-                            KlaruRequest request = new KlaruRequest(this, reqMessage.cntent, reqMessage);
+                            KlaruRequest request = new KlaruRequest(this, reqMessage.content, reqMessage);
                             foreach(var action in Keys[reqMessage.keyword])
                                 action.Invoke(request);
                             var task = Task.Delay(1000).ContinueWith(__ =>
@@ -134,7 +134,7 @@ namespace KlaruSocket
                                 MyResponseMessage resMessage = new MyResponseMessage();
                                 resMessage.responseCode = "TIMEOUT";
                                 resMessage.sessionId = reqMessage.sessionId;
-                                resMessage.cntent = "__null";
+                                resMessage.content = "__null";
                                 SendPacket(resMessage);
                             });
                             IncomingRequests.Add(reqMessage.sessionId, task);
@@ -143,7 +143,7 @@ namespace KlaruSocket
                         else
                         {
                             MyResponseMessage response = new MyResponseMessage();
-                            response.cntent = "__null";
+                            response.content = "__null";
                             response.responseCode = "BAD_KEY";
                             response.sessionId = reqMessage.sessionId;
                             SendPacket(response);
@@ -153,9 +153,9 @@ namespace KlaruSocket
                     case 4:
                     {
                         MyResponseMessage resMessage = Newtonsoft.Json.JsonConvert.DeserializeObject<MyResponseMessage>(packet.content);
-                        if (OutcomingRequests.ContainsKey(resMessage.cntent))
+                        if (OutcomingRequests.ContainsKey(resMessage.content))
                         {
-                            KlaruResponse response = new KlaruResponse(this, resMessage.cntent, resMessage);
+                            KlaruResponse response = new KlaruResponse(this, resMessage.content, resMessage);
                             OutcomingRequests[resMessage.sessionId].Invoke(response);
                         }
                     }
